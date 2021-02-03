@@ -108,6 +108,20 @@ class Siswa extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
+           $id = autoID('PTS', 'user');
+
+            $this->db->insert('user', [
+                'id_user' => $id,
+                'nama_user' => $this->input->post('nama_siswa'),
+                'alamat' => $this->input->post('alamat'),
+                'jk' => 'L',
+                'telepon' => $this->input->post('no_telepon'),
+                'email' => $this->input->post('email'),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'gambar' => 'default.png',
+                'id_role' => '3'
+            ]);
+
             $data = array(
               'id_kelas' => $this->input->post('id_kelas',TRUE),
               'nama_siswa' => $this->input->post('nama_siswa',TRUE),
@@ -116,6 +130,7 @@ class Siswa extends CI_Controller
               'no_telepon' => $this->input->post('no_telepon',TRUE),
               'email' => $this->input->post('email',TRUE),
               'tahun_angkatan' => $this->input->post('tahun_angkatan',TRUE),
+              'id_user' => $id
           );
 
             $this->Siswa_model->insert($data);

@@ -22,6 +22,17 @@ class Tugas_model extends CI_Model
         $this->db->join('guru', 'id_guru', 'left');
         $this->db->join('pelajaran', 'id_pelajaran', 'left');
         $this->db->order_by($this->id, $this->order);
+
+        if ($this->session->userdata('level') == 'Guru') {
+            $id_guru = $this->db->get('guru', ['id_user' => $this->session->userdata('id_user') ])->row()->id_guru;
+            $this->db->where('id_guru', $id_guru);
+        }
+
+        if ($this->session->userdata('level') == 'Siswa') {
+            $id_kelas = $this->db->get('siswa', ['id_user' => $this->session->userdata('id_user') ])->row()->id_kelas;
+            $this->db->where('id_kelas', $id_kelas);
+        }
+        
         return $this->db->get($this->table)->result();
     }
 

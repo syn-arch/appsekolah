@@ -28,6 +28,8 @@ class user_model extends CI_Model {
 	{
 		delImage('user', $id);
 		$this->db->delete('user', ['id_user' => $id]);
+		$this->db->delete('guru', ['id_user' => $id]);
+		$this->db->delete('siswa', ['id_user' => $id]);
 	}
 
 	public function insert($post)

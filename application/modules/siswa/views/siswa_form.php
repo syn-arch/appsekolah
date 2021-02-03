@@ -18,18 +18,18 @@
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <form action="<?php echo $action; ?>" method="post">
-                           <div class="form-group <?php if(form_error('id_kelas')) echo 'has-error'?> ">
+                         <div class="form-group <?php if(form_error('id_kelas')) echo 'has-error'?> ">
                             <label for="int">Kelas</label>
                             <select name="id_kelas" id="id_kelas" class="form-control">
-                               <option value="">-- pilih kelas --</option>
-                               <?php foreach ($kelas as $row): ?>
-                                   <option value="<?php echo $row->id_kelas ?>" <?php echo $id_kelas == $row->id_kelas ? 'selected' : '' ?>><?php echo $row->nama_kelas ?></option>
-                               <?php endforeach ?>
-                           </select>
+                             <option value="">-- pilih kelas --</option>
+                             <?php foreach ($kelas as $row): ?>
+                                 <option value="<?php echo $row->id_kelas ?>" <?php echo $id_kelas == $row->id_kelas ? 'selected' : '' ?>><?php echo $row->nama_kelas ?></option>
+                             <?php endforeach ?>
+                         </select>
 
-                           <?php echo form_error('id_kelas', '<small style="color:red">','</small>') ?>
-                       </div>
-                       <div class="form-group <?php if(form_error('nama_siswa')) echo 'has-error'?> ">
+                         <?php echo form_error('id_kelas', '<small style="color:red">','</small>') ?>
+                     </div>
+                     <div class="form-group <?php if(form_error('nama_siswa')) echo 'has-error'?> ">
                         <label for="varchar">Nama Siswa</label>
                         <input type="text" class="form-control" name="nama_siswa" id="nama_siswa" placeholder="Nama Siswa" value="<?php echo $nama_siswa; ?>" />
                         <?php echo form_error('nama_siswa', '<small style="color:red">','</small>') ?>
@@ -54,6 +54,13 @@
                         <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" />
                         <?php echo form_error('email', '<small style="color:red">','</small>') ?>
                     </div>
+                    <?php if ($button == 'Create'): ?>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" id="password" name="password" class="form-control password <?php if(form_error('password')) echo 'is-invalid'?>" placeholder="Password" value="<?php echo set_value('password') ?>">
+                            <?php echo form_error('password', '<small style="color:red">','</small>') ?>
+                        </div>
+                    <?php endif ?>
                     <div class="form-group <?php if(form_error('tahun_angkatan')) echo 'has-error'?> ">
                         <label for="int">Tahun Angkatan</label>
                         <input type="text" class="form-control" name="tahun_angkatan" id="tahun_angkatan" placeholder="Tahun Angkatan" value="<?php echo $tahun_angkatan; ?>" />

@@ -115,7 +115,7 @@ class Materi extends CI_Controller
               'id_pelajaran' => $this->input->post('id_pelajaran',TRUE),
               'judul' => $this->input->post('judul',TRUE),
               'deskripsi' => $this->input->post('deskripsi',TRUE),
-              'lampiran' => $this->input->post('lampiran',TRUE),
+              'lampiran' => uploadFile('lampiran', 'tugas/create'),
               'tahun_angkatan' => $this->input->post('tahun_angkatan',TRUE),
           );
 
@@ -171,7 +171,7 @@ class Materi extends CI_Controller
               'id_pelajaran' => $this->input->post('id_pelajaran',TRUE),
               'judul' => $this->input->post('judul',TRUE),
               'deskripsi' => $this->input->post('deskripsi',TRUE),
-              'lampiran' => $this->input->post('lampiran',TRUE),
+              'lampiran' => uploadFile('lampiran', 'tugas/create'),
               'tahun_angkatan' => $this->input->post('tahun_angkatan',TRUE),
           );
 

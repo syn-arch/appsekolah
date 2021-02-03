@@ -57,9 +57,9 @@ class Tugas extends CI_Controller
         if ($row) {
             $data = array(
               'id_tugas' => $row->id_tugas,
-              'id_kelas' => $row->id_kelas,
-              'id_guru' => $row->id_guru,
-              'id_pelajaran' => $row->id_pelajaran,
+              'nama_kelas' => $row->nama_kelas,
+              'nama_guru' => $row->nama_guru,
+              'nama_pelajaran' => $row->nama_pelajaran,
               'judul' => $row->judul,
               'deskripsi' => $row->deskripsi,
               'lampiran' => $row->lampiran,
@@ -115,7 +115,7 @@ class Tugas extends CI_Controller
               'id_pelajaran' => $this->input->post('id_pelajaran',TRUE),
               'judul' => $this->input->post('judul',TRUE),
               'deskripsi' => $this->input->post('deskripsi',TRUE),
-              'lampiran' => $this->input->post('lampiran',TRUE),
+              'lampiran' => uploadFile('lampiran', 'tugas/create'),
               'tahun_angkatan' => $this->input->post('tahun_angkatan',TRUE),
           );
 
@@ -171,7 +171,7 @@ class Tugas extends CI_Controller
               'id_pelajaran' => $this->input->post('id_pelajaran',TRUE),
               'judul' => $this->input->post('judul',TRUE),
               'deskripsi' => $this->input->post('deskripsi',TRUE),
-              'lampiran' => $this->input->post('lampiran',TRUE),
+              'lampiran' => uploadFile('lampiran', 'tugas/create'),
               'tahun_angkatan' => $this->input->post('tahun_angkatan',TRUE),
           );
 
@@ -197,16 +197,16 @@ class Tugas extends CI_Controller
 
     public function _rules() 
     {
-     $this->form_validation->set_rules('id_kelas', 'id kelas', 'trim|required|numeric');
-     $this->form_validation->set_rules('id_guru', 'id guru', 'trim|required|numeric');
-     $this->form_validation->set_rules('id_pelajaran', 'id pelajaran', 'trim|required|numeric');
-     $this->form_validation->set_rules('judul', 'judul', 'trim|required');
-     $this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');
-     $this->form_validation->set_rules('tahun_angkatan', 'tahun angkatan', 'trim|required|numeric');
+       $this->form_validation->set_rules('id_kelas', 'id kelas', 'trim|required|numeric');
+       $this->form_validation->set_rules('id_guru', 'id guru', 'trim|required|numeric');
+       $this->form_validation->set_rules('id_pelajaran', 'id pelajaran', 'trim|required|numeric');
+       $this->form_validation->set_rules('judul', 'judul', 'trim|required');
+       $this->form_validation->set_rules('deskripsi', 'deskripsi', 'trim|required');
+       $this->form_validation->set_rules('tahun_angkatan', 'tahun angkatan', 'trim|required|numeric');
 
-     $this->form_validation->set_rules('id_tugas', 'id_tugas', 'trim');
-     $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
- }
+       $this->form_validation->set_rules('id_tugas', 'id_tugas', 'trim');
+       $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+   }
 
 }
 

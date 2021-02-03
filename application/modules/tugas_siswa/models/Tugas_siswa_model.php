@@ -22,6 +22,17 @@ class Tugas_siswa_model extends CI_Model
         $this->db->join('siswa', 'id_siswa', 'left');
         $this->db->join('tugas', 'id_tugas', 'left');
         $this->db->order_by($this->id, $this->order);
+
+        if ($this->session->userdata('level') == 'Guru') {
+            $id_guru = $this->db->get('guru', ['id_user' => $this->session->userdata('id_user') ])->row()->id_guru;
+            $this->db->where('id_guru', $id_guru);
+        }
+
+        if ($this->session->userdata('level') == 'Siswa') {
+            $id_siswa = $this->db->get('siswa', ['id_user' => $this->session->userdata('id_user') ])->row()->id_siswa;
+            $this->db->where('id_siswa', $id_siswa);
+        }
+
         return $this->db->get($this->table)->result();
     }
 
@@ -32,6 +43,17 @@ class Tugas_siswa_model extends CI_Model
         $this->db->join('siswa', 'id_siswa', 'left');
         $this->db->join('tugas', 'id_tugas', 'left');
         $this->db->where($this->id, $id);
+
+        if ($this->session->userdata('level') == 'Guru') {
+            $id_guru = $this->db->get('guru', ['id_user' => $this->session->userdata('id_user') ])->row()->id_guru;
+            $this->db->where('id_guru', $id_guru);
+        }
+
+        if ($this->session->userdata('level') == 'Siswa') {
+            $id_siswa = $this->db->get('siswa', ['id_user' => $this->session->userdata('id_user') ])->row()->id_siswa;
+            $this->db->where('id_siswa', $id_siswa);
+        }
+
         return $this->db->get($this->table)->row();
     }
     

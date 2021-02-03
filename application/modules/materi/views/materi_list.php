@@ -9,7 +9,9 @@
                 </div>
                 <div class="pull-right">
                     <div class="box-title">
-                        <a href="<?php echo base_url('materi/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <?php if ($this->session->userdata('level') != 'Siswa'): ?>                            
+                            <a href="<?php echo base_url('materi/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>
@@ -30,13 +32,13 @@
                             {
                                 ?>
                                 <tr>
-                                   <td><?php echo ++$start ?></td>
-                                   <td><?php echo $materi->nama_kelas ?></td>
-                                   <td><?php echo $materi->nama_guru ?></td>
-                                   <td><?php echo $materi->nama_pelajaran ?></td>
-                                   <td><?php echo $materi->judul ?></td>
-                                   <td><?php echo $materi->lampiran ?></td>
-                                   <td><?php echo $materi->tahun_angkatan ?></td><td>
+                                 <td><?php echo ++$start ?></td>
+                                 <td><?php echo $materi->nama_kelas ?></td>
+                                 <td><?php echo $materi->nama_guru ?></td>
+                                 <td><?php echo $materi->nama_pelajaran ?></td>
+                                 <td><?php echo $materi->judul ?></td>
+                                 <td><img src="<?php echo base_url('uploads/') . $materi->lampiran ?>" alt="" class="img-responsive" width="200"></td>
+                                 <td><?php echo $materi->tahun_angkatan ?></td><td>
                                     <a href="<?php echo site_url('materi/read/' . $materi->id_materi ) ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                     <a href="<?php echo site_url('materi/update/' . $materi->id_materi ) ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                                     <a data-href="<?php echo site_url('materi/delete/' . $materi->id_materi ) ?>" class="btn btn-danger hapus-data"><i class="fa fa-trash"></i></a>
@@ -64,8 +66,8 @@
 
 <script>
     $(document).ready(function() {
-       $(document).on("click", ".hapus-data", function () {
-          hapus($(this).data("href"));
-      });
-   });
+     $(document).on("click", ".hapus-data", function () {
+      hapus($(this).data("href"));
+  });
+ });
 </script>

@@ -9,7 +9,7 @@
                 </div>
                 <div class="pull-right">
                     <div class="box-title">
-                        <a href="<?php echo base_url('tugas_siswa') ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
+                        <a href="<?php echo base_url('absen') ?>" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>
                 </div>
             </div>
@@ -34,28 +34,25 @@
                                     <?php endif ?>
                                     <?php echo form_error('id_siswa', '<small style="color:red">','</small>') ?>
                                 </div>
-                                <div class="form-group <?php if(form_error('id_tugas')) echo 'has-error'?> ">
-                                    <label for="int">Tugas</label>
-                                    <select name="id_tugas" id="id_tugas" class="form-control">
-                                        <option value="">-- pilih tugas --</option>
-                                        <?php foreach ($tugas as $row): ?>
-                                            <option value="<?php echo $row->id_tugas ?>" <?php echo $id_tugas == $row->id_tugas ? 'selected' : '' ?>><?php echo $row->judul ?></option>
-                                        <?php endforeach ?>
-                                    </select>
-
-                                    <?php echo form_error('id_tugas', '<small style="color:red">','</small>') ?>
+                                <div class="form-group <?php if(form_error('tgl')) echo 'has-error'?> ">
+                                    <label for="timestamp">Tgl</label>
+                                    <input type="datetime-local" class="form-control" name="tgl" id="tgl" placeholder="Tgl" value="<?php echo $tgl; ?>" />
+                                    <?php echo form_error('tgl', '<small style="color:red">','</small>') ?>
                                 </div>
-                                <div class="form-group <?php if(form_error('deskripsi')) echo 'has-error'?> ">
-                                    <label for="varchar">Deskripsi</label>
-                                    <input type="text" class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi" value="<?php echo $deskripsi; ?>" />
-                                    <?php echo form_error('deskripsi', '<small style="color:red">','</small>') ?>
+                                <div class="form-group <?php if(form_error('status')) echo 'has-error'?> ">
+                                    <label for="varchar">Status</label>
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="masuk" <?php echo $status == 'masuk' ? 'selected' : '' ?>>Masuk</option>
+                                        <option value="keluar" <?php echo $status == 'keluar' ? 'selected' : '' ?>>Keluar</option>
+                                    </select>
+                                    <?php echo form_error('status', '<small style="color:red">','</small>') ?>
                                 </div>
                                 <div class="form-group <?php if(form_error('lampiran')) echo 'has-error'?> ">
                                     <label for="varchar">Lampiran</label>
-                                    <input required="" type="file" class="form-control" name="lampiran" id="lampiran" placeholder="Lampiran" value="<?php echo $lampiran; ?>" />
+                                    <input type="file" required="" class="form-control" name="lampiran" id="lampiran" placeholder="Lampiran" value="<?php echo $lampiran; ?>" />
                                     <?php echo form_error('lampiran', '<small style="color:red">','</small>') ?>
                                 </div>
-                                <input type="hidden" name="id_tugas_siswa" value="<?php echo $id_tugas_siswa; ?>" /> 
+                                <input type="hidden" name="id_absen" value="<?php echo $id_absen; ?>" /> 
                                 <button type="submit" class="btn btn-primary btn-block">SUBMIT</button> 
                             </form>
                         </div>

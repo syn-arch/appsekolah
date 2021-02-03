@@ -82,8 +82,13 @@ class Siswa_model extends CI_Model
     // delete data
     function delete($id)
     {
+        $id_user = $this->db->get_where('siswa', ['id_siswa' => $id])->row_array()['id_user'];
+
+        $this->db->delete('user', ['id_user' => $id_user]);
+
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
+
     }
 
 }

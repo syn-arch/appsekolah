@@ -23,7 +23,7 @@
                      <tr><td>Pelajaran</td><td><?php echo $nama_pelajaran; ?></td></tr>
                      <tr><td>Judul</td><td><?php echo $judul; ?></td></tr>
                      <tr><td>Deskripsi</td><td><?php echo $deskripsi; ?></td></tr>
-                     <tr><td>Lampiran</td><td><?php echo $lampiran; ?></td></tr>
+                     <tr><td>Lampiran</td><td><img src="<?php echo base_url('uploads/') . $lampiran ?>" alt="" class="img-responsive"></td></tr>
                      <tr><td>Tahun Angkatan</td><td><?php echo $tahun_angkatan; ?></td></tr>
                  </table>
              </div>

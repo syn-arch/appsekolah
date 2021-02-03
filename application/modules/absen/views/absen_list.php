@@ -10,7 +10,7 @@
                 </div>
                 <div class="pull-right">
                     <div class="box-title">
-                        <a href="<?php echo base_url('tugas_siswa/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="<?php echo base_url('absen/create') ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -20,23 +20,24 @@
                         <tr>
                             <th>No</th>
                             <th>Siswa</th>
-                            <th>Tugas</th>
-                            <th>Deskripsi</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
                             <th>Lampiran</th>
                             <th>Action</th>
                             </tr><?php
-                            foreach ($tugas_siswa_data as $tugas_siswa)
+                            foreach ($absen_data as $absen)
                             {
                                 ?>
                                 <tr>
                                  <td><?php echo ++$start ?></td>
-                                 <td><?php echo $tugas_siswa->nama_siswa ?></td>
-                                 <td><?php echo $tugas_siswa->judul ?></td>
-                                 <td><?php echo $tugas_siswa->deskripsi ?></td>
-                                 <td><img src="<?php echo base_url('uploads/') . $tugas_siswa->lampiran ?>" alt="" class="img-responsive" width="200"></td><td>
-                                    <a href="<?php echo site_url('tugas_siswa/read/' . $tugas_siswa->id_tugas_siswa ) ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                                    <a href="<?php echo site_url('tugas_siswa/update/' . $tugas_siswa->id_tugas_siswa ) ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                    <a data-href="<?php echo site_url('tugas_siswa/delete/' . $tugas_siswa->id_tugas_siswa ) ?>" class="btn btn-danger hapus-data"><i class="fa fa-trash"></i></a>
+                                 <td><?php echo $absen->nama_siswa ?></td>
+                                 <td><?php echo $absen->tgl ?></td>
+                                 <td><?php echo $absen->status ?></td>
+                                 <td><img src="<?php echo base_url('uploads/') . $absen->lampiran ?>" alt="" class="img-responsive" width="200"></td>
+                                 <td>
+                                    <a href="<?php echo site_url('absen/read/' . $absen->id_absen ) ?>" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                    <a href="<?php echo site_url('absen/update/' . $absen->id_absen ) ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                    <a data-href="<?php echo site_url('absen/delete/' . $absen->id_absen ) ?>" class="btn btn-danger hapus-data"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             <?php

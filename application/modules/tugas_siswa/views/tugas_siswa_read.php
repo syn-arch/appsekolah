@@ -22,7 +22,7 @@
                      <tr><td>Siswa</td><td><?php echo $nama_siswa; ?></td></tr>
                      <tr><td>Tugas</td><td><?php echo $judul; ?></td></tr>
                      <tr><td>Deskripsi</td><td><?php echo $deskripsi; ?></td></tr>
-                     <tr><td>Lampiran</td><td><?php echo $lampiran; ?></td></tr>
+                     <tr><td>Lampiran</td><td><img src="<?php echo base_url('uploads/') . $lampiran ?>" alt="" class="img-responsive"></td></tr>
                  </table>
              </div>
          </div>

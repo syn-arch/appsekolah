@@ -23,6 +23,7 @@
            <tr><td>Tanggal</td><td><?php echo $tgl; ?></td></tr>
            <tr><td>Status</td><td><?php echo $status; ?></td></tr>
            <tr><td>Lampiran</td><td><img src="<?php echo base_url('uploads/') . $lampiran ?>" alt="" class="img-responsive"></td></tr>
+           <tr><td>Download</td><td><a href="<?php echo base_url('uploads/' . $lampiran) ?>" download class="btn btn-success">Download Lampiran</a></td></tr>
          </table>
        </div>
      </div>

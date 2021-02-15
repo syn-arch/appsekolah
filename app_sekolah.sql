@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 01, 2021 at 08:02 PM
+-- Generation Time: Feb 03, 2021 at 07:19 PM
 -- Server version: 10.3.27-MariaDB-0+deb10u1
 -- PHP Version: 7.3.19-1~deb10u1
 
@@ -30,10 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `absen` (
   `id_absen` int(11) NOT NULL,
   `id_siswa` int(11) NOT NULL,
+  `tgl` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` varchar(255) NOT NULL,
-  `lampiran` varchar(255) NOT NULL,
-  `tgl` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `lampiran` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `absen`
+--
+
+INSERT INTO `absen` (`id_absen`, `id_siswa`, `tgl`, `status`, `lampiran`) VALUES
+(3, 11, '2021-02-03 12:17:34', 'masuk', 'Screenshot_2020-11-12_22-36-022.png');
 
 -- --------------------------------------------------------
 
@@ -59,9 +66,7 @@ INSERT INTO `akses_role` (`akses_role`, `id_menu`, `id_role`) VALUES
 (219, 24, 1),
 (220, 27, 1),
 (222, 57, 1),
-(223, 62, 1),
 (225, 66, 1),
-(226, 63, 1),
 (228, 1, 1),
 (229, 22, 1),
 (230, 67, 1),
@@ -76,25 +81,28 @@ INSERT INTO `akses_role` (`akses_role`, `id_menu`, `id_role`) VALUES
 (239, 76, 1),
 (240, 77, 1),
 (241, 78, 1),
-(242, 1, 2),
-(243, 66, 2),
-(244, 67, 2),
-(245, 68, 2),
-(246, 69, 2),
-(247, 70, 2),
-(248, 71, 2),
-(249, 72, 2),
-(250, 73, 2),
-(251, 74, 2),
-(252, 75, 2),
-(253, 76, 2),
-(254, 77, 2),
-(255, 78, 2),
-(256, 79, 2),
-(257, 80, 2),
-(258, 22, 2),
 (259, 79, 1),
-(260, 80, 1);
+(260, 80, 1),
+(261, 1, 3),
+(262, 72, 3),
+(264, 74, 3),
+(265, 75, 3),
+(267, 77, 3),
+(268, 78, 3),
+(269, 79, 3),
+(270, 80, 3),
+(271, 22, 3),
+(272, 1, 2),
+(273, 72, 2),
+(274, 73, 2),
+(275, 74, 2),
+(276, 75, 2),
+(277, 77, 2),
+(278, 78, 2),
+(279, 79, 2),
+(280, 80, 2),
+(281, 22, 2),
+(282, 76, 2);
 
 -- --------------------------------------------------------
 
@@ -120,16 +128,16 @@ CREATE TABLE `guru` (
   `nip` varchar(255) DEFAULT NULL,
   `alamat` varchar(255) NOT NULL,
   `no_telepon` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL
+  `email` varchar(255) NOT NULL,
+  `id_user` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `guru`
 --
 
-INSERT INTO `guru` (`id_guru`, `nama_guru`, `nip`, `alamat`, `no_telepon`, `email`) VALUES
-(1, 'Adiatna Sukmana', '171810009', 'Jl. Soekarno Hatta No.69', '083822623170', 'adiatna@gmail.com'),
-(2, 'Abdurrahman Shah', '1718100001', 'Jl. Mawar No. 55', '083822623170', 'abdu@gmail.com');
+INSERT INTO `guru` (`id_guru`, `nama_guru`, `nip`, `alamat`, `no_telepon`, `email`, `id_user`) VALUES
+(7, 'Guru', '1718100001', 'Bandung', '083822623170', 'guru@gmail.com', 'PTS00002');
 
 -- --------------------------------------------------------
 
@@ -194,8 +202,7 @@ CREATE TABLE `materi` (
 --
 
 INSERT INTO `materi` (`id_materi`, `id_kelas`, `id_guru`, `id_pelajaran`, `judul`, `deskripsi`, `lampiran`, `tahun_angkatan`) VALUES
-(1, 3, 2, 2, 'Aljabar | Bentuk Aljabar, Rumus Aljabar, dan Operasi Aljabar', 'A. Pengertian Aljabar atau Algebra\r\nAljabar adalah bagian dari ilmu matematika meliputi teori bilangan, geometri, dan analisis penyelesaiannya. Secara harfiah, aljabar berasal dari bahasa arab yaitu الجبر‎ atau yang dibaca \"al-jabr\". Ilmu ini dibuat oleh Muḥammad ibn Mūsā al-Khwārizmī dalam bukunya mengenai konsep dan bentuk aljabar ditulis sekitar tahun 820, yang merupakan seorang matematikawan, astronomer, dan geograf. Ia dijuluki sebagai \"The Father of Algebra\". Dalam bahasa inggris, aljabar dikenal dengan istilah \"algebra\".', '', 2021),
-(2, 3, 1, 6, 'Belajar HTML Lengkap untuk Pemula', 'Apa Itu HTML?\r\nHTML (Hypertext Markup Language) merupakan gabungan dari dua istilah: hypertext dan markup language. Apa sih itu?\r\n\r\nHypertext yaitu dokumen berisi tautan yang memungkinkan pengguna terhubung ke halaman lain.\r\n\r\nSedangkan markup language merupakan bahasa komputer yang terdiri dari sekumpulan kode untuk mengatur struktur dan menyajikan informasi.\r\n\r\nJadi, HTML adalah bahasa markup untuk membuat struktur halaman website. \r\n\r\nSejarah HTML\r\nTahun 1991 adalah saksi kelahiran HTML. Dibuat oleh seorang ilmuwan bernama Tim Berners-Lee, HTML awalnya menjadi solusi untuk memudahkan para ilmuwan dalam mengakses dokumen satu sama lain.\r\n\r\nNamun, siapa sangka HTML berkembang dan menjelma sebagai pondasi untuk membuat website di era terkini? Bahkan, 90.8% website di dunia menggunakan bahasa markup ini, lho. Menakjubkan, bukan?', '', 2021);
+(4, 3, 7, 2, 'Tambah Materi', 'deskripsi', 'Screenshot_2020-11-12_22-40-30.png', 2021);
 
 -- --------------------------------------------------------
 
@@ -226,8 +233,6 @@ INSERT INTO `menu` (`id_menu`, `nama_menu`, `icon`, `ada_submenu`, `submenu`, `u
 (23, 'Utilitas', 'fas fa-cog', 1, 0, 'utilitas', 7),
 (24, 'Backup Database', 'fas fa-database', 0, 23, 'utilitas/backup', 1),
 (27, 'Pengaturan', 'fas fa-cogs', 0, 0, 'pengaturan', 8),
-(62, 'Menu Management', 'fa fa-bars', 0, 23, 'menu', 3),
-(63, 'CRUD Generator', 'fas fa-edit', 0, 23, 'crud_generator', 2),
 (66, 'Data Master', 'fas fa-th-large', 1, 0, 'master', 2),
 (67, 'Data Jurusan', 'fas fa-square', 0, 66, 'jurusan', 1),
 (68, 'Data Kelas', 'fas fa-square', 0, 66, 'kelas', 2),
@@ -320,7 +325,8 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id_role`, `nama_role`) VALUES
 (1, 'Admin'),
-(2, 'Demo');
+(2, 'Guru'),
+(3, 'Siswa');
 
 -- --------------------------------------------------------
 
@@ -336,16 +342,16 @@ CREATE TABLE `siswa` (
   `alamat` varchar(255) NOT NULL,
   `no_telepon` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `tahun_angkatan` int(11) NOT NULL
+  `tahun_angkatan` int(11) NOT NULL,
+  `id_user` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id_siswa`, `id_kelas`, `nama_siswa`, `nis`, `alamat`, `no_telepon`, `email`, `tahun_angkatan`) VALUES
-(1, 3, 'Muhammad Rivaldi', '1718100004', 'Jl. Muhammad Hatta No. 45', '083822623170', 'rivaldi@gmail.com', 2021),
-(2, 4, 'Dimas Subagja', '1718100006', 'Jl. Violet', '083822623170', 'dimas@gmail.com', 2021);
+INSERT INTO `siswa` (`id_siswa`, `id_kelas`, `nama_siswa`, `nis`, `alamat`, `no_telepon`, `email`, `tahun_angkatan`, `id_user`) VALUES
+(11, 3, 'Siswa', '171810000', 'Bandung', '083822623170', 'siswa@gmail.com', 2021, 'PTS00003');
 
 -- --------------------------------------------------------
 
@@ -382,8 +388,7 @@ CREATE TABLE `tugas` (
 --
 
 INSERT INTO `tugas` (`id_tugas`, `id_kelas`, `id_guru`, `id_pelajaran`, `judul`, `deskripsi`, `lampiran`, `tahun_angkatan`) VALUES
-(1, 3, 2, 6, 'Tugas Web', 'Buat sebuah halaman web statis dari HTML CSS', '', 2021),
-(2, 3, 2, 7, 'Tugas Matematika', 'Hitung 2x9-1 = ?', '', 2021);
+(5, 3, 7, 2, 'Tambah Tugas', 'Deskripsi', 'Screenshot_2020-11-12_22-36-021.png', 2021);
 
 -- --------------------------------------------------------
 
@@ -404,7 +409,7 @@ CREATE TABLE `tugas_siswa` (
 --
 
 INSERT INTO `tugas_siswa` (`id_tugas_siswa`, `id_siswa`, `id_tugas`, `deskripsi`, `lampiran`) VALUES
-(1, 2, 2, 'Saya sudah mengerjakan nya pak, done', '');
+(3, 11, 5, 'tes', 'Screenshot_2020-11-12_22-40-301.png');
 
 -- --------------------------------------------------------
 
@@ -431,7 +436,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nama_user`, `alamat`, `jk`, `telepon`, `email`, `password`, `gambar`, `id_role`) VALUES
 ('PTS000', 'SUPERADMIN', 'BANDUNG', 'L', '083822623170', 'superadmin@admin.com', '$2y$10$MGcM/fpEsu/SGZYifhZWpOD3qIjU0YU7PVNQHDhLhd6yTm2Tgxzj.', 'man.png', 1),
 ('PTS00001', 'Administrator', 'Batulawang', 'L', '085864273756', 'admin@admin.com', '$2y$10$t2LIGNkyTgoo.wfFq65HU.RMH3.maKSCVMYL1.ix0l.xZjAOfi1PK', 'man-1.png', 1),
-('PTS00002', 'Demo', 'Bandung', 'L', '083822623170', 'demo@demo.com', '$2y$10$t5Faqji2TTAotNsf8CQfyuyrysWr36fPnPi3cv6Dh5verLdvJGGPC', 'boy.png', 2);
+('PTS00002', 'Guru', 'Bandung', 'L', '083822623170', 'guru@gmail.com', '$2y$10$ZLwvGnu3xsQUviwHg6i8xutI/KswG.sUMsx56bGDTGLic1uVSpzva', 'default.png', 2),
+('PTS00003', 'Siswa', 'Bandung', 'L', '083822623170', 'siswa@gmail.com', '$2y$10$b.pChlmuiRIhdxh7/tu2BOrY5VllGDP0y8h68MWUBAG/RITEWcKjO', 'default.png', 3);
 
 --
 -- Indexes for dumped tables
@@ -547,13 +553,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `akses_role`
 --
 ALTER TABLE `akses_role`
-  MODIFY `akses_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
+  MODIFY `akses_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
 
 --
 -- AUTO_INCREMENT for table `backup`
@@ -565,7 +571,7 @@ ALTER TABLE `backup`
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `jurusan`
@@ -583,7 +589,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_materi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -613,13 +619,13 @@ ALTER TABLE `pengaturan`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `token_user`
@@ -631,13 +637,13 @@ ALTER TABLE `token_user`
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tugas_siswa`
 --
 ALTER TABLE `tugas_siswa`
-  MODIFY `id_tugas_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_tugas_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

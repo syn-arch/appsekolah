@@ -23,6 +23,7 @@
                      <tr><td>Tugas</td><td><?php echo $judul; ?></td></tr>
                      <tr><td>Deskripsi</td><td><?php echo $deskripsi; ?></td></tr>
                      <tr><td>Lampiran</td><td><img src="<?php echo base_url('uploads/') . $lampiran ?>" alt="" class="img-responsive"></td></tr>
+                     <tr><td>Download</td><td><a href="<?php echo base_url('uploads/' . $lampiran) ?>" download class="btn btn-success">Download Lampiran</a></td></tr>
                  </table>
              </div>
          </div>
